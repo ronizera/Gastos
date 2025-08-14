@@ -176,6 +176,7 @@ export default function Home() {
           </div>
         ) : (
           <>
+            {/* Saldo e estatísticas */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="bg-white p-6 rounded-lg shadow">
                 <h3 className="text-sm font-medium text-gray-500">Saldo Atual</h3>
@@ -209,6 +210,62 @@ export default function Home() {
                 </p>
               </div>
             </div>
+
+            {/* Formulário para adicionar transações */}
+            <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Descrição"
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  className="border p-2 rounded"
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="Valor"
+                  value={formData.amount}
+                  onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+                  className="border p-2 rounded"
+                  required
+                />
+                <select
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  className="border p-2 rounded"
+                >
+                  <option value="Alimentacao">Alimentação</option>
+                  <option value="Transporte">Transporte</option>
+                  <option value="Moradia">Moradia</option>
+                  <option value="Lazer">Lazer</option>
+                  <option value="Saúde">Saúde</option>
+                  <option value="Educacao">Educação</option>
+                  <option value="Outros">Outros</option>
+                </select>
+                <select
+                  value={formData.type}
+                  onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                  className="border p-2 rounded"
+                >
+                  <option value="income">Receita</option>
+                  <option value="expense">Despesa</option>
+                </select>
+                <input
+                  type="date"
+                  value={formData.date}
+                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                  className="border p-2 rounded"
+                />
+              </div>
+              <button
+                type="submit"
+                className="mt-4 bg-black text-white py-2 px-4 rounded hover:bg-green-700 transition"
+              >
+                Adicionar
+              </button>
+            </form>
+
             {/* Lista de Transações */}
             <div className="mt-8 bg-white rounded-lg shadow overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200">
